@@ -17,7 +17,7 @@ MailTrace's documentation is grouped by the question a reviewer or operator is t
 - [Testing](TESTING.md) — backend, frontend, and real-browser coverage.
 - [Recorded validation](VALIDATION.md) — v1.0.0 validation environment and results.
 - [v1.0.0 release notes](RELEASE_NOTES_v1.0.0.md) — concise release summary and known limitations.
-- [Screenshot capture checklist](screenshots/README.md) — required portfolio images and safe capture guidance.
+- [Application screenshots](screenshots/README.md) — README image inventory and privacy-safe replacement guidance.
 
 ## Security and evidence handling
 

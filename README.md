@@ -19,25 +19,43 @@ MailTrace treats authentication headers as receiver-reported evidence. It does *
 
 ## Interface walkthrough
 
-The screenshot slots below are prepared for captures made with MailTrace's synthetic demo evidence. See the [capture checklist](docs/screenshots/README.md) for consistent, privacy-safe framing.
+The screens below use synthetic email evidence and show the local investigation workflow from intake through retained analysis history.
 
-<!-- Screenshot placeholder: ![Analysis input screen](docs/screenshots/01-analysis-input.png) -->
-**Analysis input** — Upload a synthetic `.eml` file or paste raw headers for local analysis. (`01-analysis-input.png`)
+### Analysis input
 
-<!-- Screenshot placeholder: ![Investigation overview](docs/screenshots/02-investigation-overview.png) -->
-**Investigation overview** — Summarizes evidence, assessment, confidence, and the strongest observations without presenting a binary verdict. (`02-investigation-overview.png`)
+![MailTrace analysis input with EML upload and pasted-header options](docs/screenshots/01-analysis-input.png)
 
-<!-- Screenshot placeholder: ![Authentication analysis](docs/screenshots/03-authentication-analysis.png) -->
-**Authentication analysis** — Separates receiver-reported SPF, DKIM, DMARC, and ARC results from derived sender-alignment comparisons. (`03-authentication-analysis.png`)
+Upload a synthetic `.eml` file or paste raw headers for processing on the local device.
 
-<!-- Screenshot placeholder: ![Delivery path reconstruction](docs/screenshots/04-delivery-path.png) -->
-**Delivery path** — Reconstructs ordered `Received` hops, timestamps, hosts, and IP classifications from message evidence. (`04-delivery-path.png`)
+### Investigation overview
 
-<!-- Screenshot placeholder: ![URL and attachment inspection](docs/screenshots/05-urls-attachments.png) -->
-**URLs and attachments** — Inventories MIME parts, attachment metadata and hashes, and display-versus-destination URL differences without opening content. (`05-urls-attachments.png`)
+![MailTrace investigation overview with assessment, confidence, evidence summary, and observations](docs/screenshots/02-investigation-overview.png)
 
-<!-- Screenshot placeholder: ![Report export or local history](docs/screenshots/06-report-or-history.png) -->
-**Reports and local history** — Demonstrates evidence-led exports or review and deletion of analyses retained on the local device. (`06-report-or-history.png`)
+Review the assessment, confidence, evidence summary, and strongest observations without reducing the message to a definitive malicious/benign verdict.
+
+### Authentication analysis
+
+![MailTrace authentication evidence showing reported SPF, DKIM, and DMARC results](docs/screenshots/03-authentication-analysis.png)
+
+Inspect receiver-reported SPF, DKIM, and DMARC results alongside an explicit verification disclaimer and expandable alignment and ARC context.
+
+### Delivery path
+
+![MailTrace delivery path showing an ordered Received hop](docs/screenshots/04-delivery-path.png)
+
+Follow chronologically ordered `Received` hops while retaining access to the raw header evidence and its trust-boundary caveat.
+
+### Message content and attachments
+
+![MailTrace MIME and attachment inspection with safe text preview and SHA-256 evidence](docs/screenshots/05-urls-attachments.png)
+
+Review MIME structure, a non-rendered plain-text preview, attachment metadata, and SHA-256 evidence without executing the attachment or rendering active HTML.
+
+### Local analysis history
+
+![MailTrace local analysis history with search, assessment summaries, and deletion controls](docs/screenshots/06-report-or-history.png)
+
+Search, reopen, or delete forensic reports retained on the local device.
 
 ## Capabilities
 

@@ -1,6 +1,43 @@
 # MailTrace
 
-MailTrace is a local-first email forensic triage application for turning raw `.eml` files or pasted headers into an evidence-led investigation report. It helps analysts and learners interpret delivery paths, sender identity differences, and authentication results without sending message data to an external service.
+**Local-first email forensic triage for turning raw message evidence into an explainable investigation report.**
+
+[![Validation](https://github.com/mosaddiqurr/MailTrace/actions/workflows/validate.yml/badge.svg)](https://github.com/mosaddiqurr/MailTrace/actions/workflows/validate.yml)
+[![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+MailTrace helps analysts examine `.eml` files and pasted email headers without sending message evidence to an external service. It organizes delivery, identity, authentication, MIME, URL, and attachment evidence while keeping the underlying facts and limitations visible.
+
+## Key capabilities
+
+- Analyze `.eml` files and raw email headers.
+- Investigate reported SPF, DKIM, DMARC, ARC, and sender identity alignment.
+- Reconstruct delivery paths and inspect extracted URLs and attachments.
+- Export evidence-led reports in PDF, JSON, CSV, text, HTML, and ZIP formats.
+
+MailTrace treats authentication headers as receiver-reported evidence. It does **not** perform fresh DKIM cryptographic verification, reconstruct historical DNS, execute or malware-scan attachments, reputation-check URLs, or make definitive malicious/benign classifications.
+
+## Interface walkthrough
+
+The screenshot slots below are prepared for captures made with MailTrace's synthetic demo evidence. See the [capture checklist](docs/screenshots/README.md) for consistent, privacy-safe framing.
+
+<!-- Screenshot placeholder: ![Analysis input screen](docs/screenshots/01-analysis-input.png) -->
+**Analysis input** — Upload a synthetic `.eml` file or paste raw headers for local analysis. (`01-analysis-input.png`)
+
+<!-- Screenshot placeholder: ![Investigation overview](docs/screenshots/02-investigation-overview.png) -->
+**Investigation overview** — Summarizes evidence, assessment, confidence, and the strongest observations without presenting a binary verdict. (`02-investigation-overview.png`)
+
+<!-- Screenshot placeholder: ![Authentication analysis](docs/screenshots/03-authentication-analysis.png) -->
+**Authentication analysis** — Separates receiver-reported SPF, DKIM, DMARC, and ARC results from derived sender-alignment comparisons. (`03-authentication-analysis.png`)
+
+<!-- Screenshot placeholder: ![Delivery path reconstruction](docs/screenshots/04-delivery-path.png) -->
+**Delivery path** — Reconstructs ordered `Received` hops, timestamps, hosts, and IP classifications from message evidence. (`04-delivery-path.png`)
+
+<!-- Screenshot placeholder: ![URL and attachment inspection](docs/screenshots/05-urls-attachments.png) -->
+**URLs and attachments** — Inventories MIME parts, attachment metadata and hashes, and display-versus-destination URL differences without opening content. (`05-urls-attachments.png`)
+
+<!-- Screenshot placeholder: ![Report export or local history](docs/screenshots/06-report-or-history.png) -->
+**Reports and local history** — Demonstrates evidence-led exports or review and deletion of analyses retained on the local device. (`06-report-or-history.png`)
 
 ## Capabilities
 
@@ -15,7 +52,11 @@ MailTrace distinguishes facts, reported authentication claims, derived compariso
 
 ## Architecture
 
-The frontend uses React, TypeScript, Vite, and TanStack Query. FastAPI provides the API and production static hosting, with SQLAlchemy and SQLite for local persistence and Alembic for migrations. Pytest, Vitest, ESLint, MyPy, Ruff, and Playwright cover the backend, frontend, and real browser workflow.
+The frontend uses React, TypeScript, Vite, and TanStack Query. FastAPI provides the API and production static hosting, with SQLAlchemy and SQLite for local persistence and Alembic for migrations. Parsed analyses and retained originals stay in the local `data/` directory by default. Optional current-DNS enrichment is disabled until explicitly enabled.
+
+See the [architecture and local data-flow diagram](docs/ARCHITECTURE.md) for component boundaries, evidence storage, report generation, and the only optional network path.
+
+Pytest, Vitest, ESLint, MyPy, Ruff, and Playwright cover the backend, frontend, and real-browser workflow.
 
 ## Run from a fresh clone
 
@@ -52,11 +93,11 @@ Set-Location ..
 .\.venv\Scripts\python.exe -m alembic upgrade head
 ```
 
-Runtime data defaults to `data/`. It is intentionally Git-ignored because it can contain private evidence. Configuration uses `MAILTRACE_` environment variables; see `mailtrace/config.py` for available limits and paths.
+Runtime data defaults to `data/`. It is intentionally Git-ignored because it can contain private evidence. Configuration uses `MAILTRACE_` environment variables; see [`mailtrace/config.py`](mailtrace/config.py) for available limits and paths.
 
 ## Demo data
 
-Synthetic examples are packaged under `mailtrace/fixtures/`. Start with `aligned-business.eml` for a low-concern message and `spf-fail-reply-to.eml` for reported authentication failure and sender-identity differences. The application also exposes these through its demo API. No real email evidence belongs in fixtures.
+Synthetic examples are packaged under [`mailtrace/fixtures/`](mailtrace/fixtures/). Start with `aligned-business.eml` for a low-concern message and `spf-fail-reply-to.eml` for reported authentication failure and sender-identity differences. The application also exposes these through its demo API. No real email evidence belongs in fixtures.
 
 ## Validation
 
@@ -80,12 +121,16 @@ npm.cmd run test:e2e
 npm.cmd audit --audit-level=high
 ```
 
-`npm run test:e2e` owns its temporary Uvicorn process, waits for readiness, and releases port 8000 after the run.
+`npm run test:e2e` owns its temporary Uvicorn process, waits for readiness, and releases port 8000 after the run. The [recorded release validation](docs/VALIDATION.md) documents the validated toolchain and results.
 
 ## Security, privacy, and limitations
 
 Message processing is local by default. MailTrace does not load remote images, follow links, execute attachments, or render active message HTML. Input sizes, header counts, MIME depth, part counts, attachment counts, decoded bytes, URL counts, and processing time are bounded. Optional current-DNS enrichment is disabled until the user enables it; enabling it makes network DNS requests.
 
-Header evidence can be forged before a trusted receiving boundary. Current DNS cannot reconstruct historical authentication state. Static attachment inspection is not malware analysis, and URL extraction is not reputation checking. See `docs/` for the detailed methodology, architecture, security model, privacy notes, retention behavior, and limitations.
+Header evidence can be forged before a trusted receiving boundary. Current DNS cannot reconstruct historical authentication state. Static attachment inspection is not malware analysis, and URL extraction is not reputation checking. See the [documentation index](docs/README.md) for the detailed methodology, architecture, security model, privacy notes, retention behavior, exports, testing, and limitations.
 
-Docker configuration is included in `Dockerfile` and `compose.yaml`, but Docker runtime was not validated on the current host because Docker was unavailable.
+Docker configuration is included in [`Dockerfile`](Dockerfile) and [`compose.yaml`](compose.yaml), but Docker runtime was not validated on the recorded validation host because Docker was unavailable.
+
+## License
+
+MailTrace is available under the [MIT License](LICENSE).

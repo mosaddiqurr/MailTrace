@@ -1,0 +1,8 @@
+services:
+  mailtrace:
+    build: .
+    ports: ["8000:8000"]
+    volumes: ["mailtrace-data:/app/data"]
+    restart: unless-stopped
+volumes:
+  mailtrace-data:

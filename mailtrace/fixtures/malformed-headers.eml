@@ -1,0 +1,10 @@
+From this line has no colon
+Subject: =?utf-8?Q?Broken_=E2=9C=93?=
+ Folded continuation after subject
+X-Bad Header: invalid field name
+To: undisclosed-recipients:;
+Date: definitely-not-a-date
+Content-Type: text/plain
+
+Demonstration malformed fixture.
+

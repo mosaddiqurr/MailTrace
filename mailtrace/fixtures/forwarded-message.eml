@@ -1,0 +1,18 @@
+Return-Path: <sender@origin.example>
+Received: from forwarder.example (forwarder.example [203.0.113.55]) by mx.destination.test with ESMTPS id F3; Fri, 18 Jul 2025 08:03:00 +0000
+Received: from mail.origin.example (mail.origin.example [192.0.2.10]) by forwarder.example with ESMTPS id F2; Fri, 18 Jul 2025 08:02:00 +0000
+Authentication-Results: mx.destination.test; spf=fail smtp.mailfrom=sender@origin.example; dkim=pass header.d=origin.example; dmarc=pass header.from=origin.example
+Authentication-Results: forwarder.example; spf=pass smtp.mailfrom=sender@origin.example; dkim=pass header.d=origin.example; dmarc=pass header.from=origin.example
+ARC-Authentication-Results: i=1; forwarder.example; spf=pass smtp.mailfrom=sender@origin.example; dkim=pass header.d=origin.example
+ARC-Seal: i=1; a=rsa-sha256; d=forwarder.example; s=arc; cv=none; b=fixture
+ARC-Message-Signature: i=1; a=rsa-sha256; d=forwarder.example; s=arc; bh=fixture; b=fixture
+DKIM-Signature: v=1; a=rsa-sha256; d=origin.example; s=mail; h=from:to:subject:date; bh=fixture; b=fixture
+From: Original Sender <sender@origin.example>
+To: forwarded-user@destination.test
+Subject: Forwarded project note
+Date: Fri, 18 Jul 2025 08:00:00 +0000
+Message-ID: <forward-demo@origin.example>
+Content-Type: text/plain
+
+Demonstration fixture only.
+

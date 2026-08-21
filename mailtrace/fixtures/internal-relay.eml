@@ -1,0 +1,15 @@
+Return-Path: <noreply@corp.example>
+Received: from edge.corp.example (edge.corp.example [203.0.113.130]) by mx.corp.example with ESMTPS id I3; Tue, 22 Jul 2025 02:00:10 +0000
+Received: from app.internal.corp.example (app.internal.corp.example [10.20.0.15]) by edge.corp.example with ESMTP id I2; Tue, 22 Jul 2025 02:00:05 +0000
+Received: from worker.internal.corp.example (worker.internal.corp.example [10.20.0.20]) by app.internal.corp.example with ESMTP id I1; Tue, 22 Jul 2025 02:00:00 +0000
+Authentication-Results: mx.corp.example; spf=pass smtp.mailfrom=noreply@corp.example; dkim=pass header.d=corp.example; dmarc=pass header.from=corp.example
+From: Internal Notifications <noreply@corp.example>
+To: user@corp.example
+Subject: Internal workflow complete
+Date: Tue, 22 Jul 2025 01:59:55 +0000
+Message-ID: <workflow-77@corp.example>
+Auto-Submitted: auto-generated
+Content-Type: text/plain
+
+Demonstration fixture only.
+

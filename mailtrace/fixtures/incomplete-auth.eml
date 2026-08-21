@@ -1,0 +1,22 @@
+Return-Path: <colleague@smallbusiness.example>
+Received: from mail.smallbusiness.example (mail.smallbusiness.example [192.0.2.180]) by mx.recipient.test with ESMTP id N1; Wed, 23 Jul 2025 15:00:00 +0000
+From: Colleague <colleague@smallbusiness.example>
+To: analyst@recipient.test
+Subject: Meeting follow-up
+Date: Wed, 23 Jul 2025 14:59:00 +0000
+Message-ID: <meeting-2@smallbusiness.example>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="fixture-boundary"
+
+--fixture-boundary
+Content-Type: text/plain; charset=utf-8
+
+Demonstration fixture with incomplete authentication evidence.
+--fixture-boundary
+Content-Type: application/octet-stream; name="agenda.txt"
+Content-Disposition: attachment; filename="agenda.txt"
+Content-Transfer-Encoding: base64
+
+RGVtb25zdHJhdGlvbiBhdHRhY2htZW50LiBJdCBpcyBuZXZlciBleGVjdXRlZC4=
+--fixture-boundary--
+

@@ -1,0 +1,17 @@
+Return-Path: <list-bounces@lists.community.example>
+Received: from lists.community.example (lists.community.example [203.0.113.80]) by mx.member.test with ESMTPS id L22; Sat, 19 Jul 2025 12:02:00 +0000
+Authentication-Results: mx.member.test; spf=pass smtp.mailfrom=list-bounces@lists.community.example; dkim=pass header.d=lists.community.example; dmarc=pass header.from=lists.community.example
+From: Member via Project List <member=origin.example@lists.community.example>
+Sender: project-list@lists.community.example
+To: project-list@lists.community.example
+Subject: [Project] Meeting notes
+Date: Sat, 19 Jul 2025 12:00:00 +0000
+Message-ID: <list-post-100@lists.community.example>
+List-Id: Project discussion <project.lists.community.example>
+List-Post: <mailto:project-list@lists.community.example>
+List-Unsubscribe: <mailto:project-list-unsubscribe@lists.community.example>
+Precedence: list
+Content-Type: text/plain
+
+Demonstration fixture only.
+

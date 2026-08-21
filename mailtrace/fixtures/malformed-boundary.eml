@@ -1,0 +1,7 @@
+From: Sender <sender@example.com>
+Subject: Missing boundary
+MIME-Version: 1.0
+Content-Type: multipart/mixed
+Message-ID: <10@example.com>
+
+This multipart declaration has no boundary.

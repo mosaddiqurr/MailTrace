@@ -1,0 +1,7 @@
+Authentication-Results: mx.one; spf=pass smtp.mailfrom=example.com
+Authentication-Results: mx.two; spf=fail smtp.mailfrom=example.com
+From: Sender <sender@example.com>
+Subject: Duplicate authentication results
+Message-ID: <12@example.com>
+
+Trust fixture.

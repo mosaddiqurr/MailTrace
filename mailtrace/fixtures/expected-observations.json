@@ -1,0 +1,13 @@
+{
+  "aligned-business": [],
+  "spf-fail-reply-to": ["AUTH-SPF-FAIL", "ID-001", "DOM-005"],
+  "dkim-pass-dmarc-fail": ["AUTH-DMARC-FAIL", "AUTH-DKIM-ALIGN"],
+  "forwarded-message": ["AUTH-002"],
+  "mailing-list": ["META-003"],
+  "malformed-headers": ["ID-005", "META-001"],
+  "punycode-domain": ["DOM-001"],
+  "timestamp-anomaly": ["HOP-001"],
+  "internal-relay": [],
+  "incomplete-auth": ["AUTH-001"]
+}
+

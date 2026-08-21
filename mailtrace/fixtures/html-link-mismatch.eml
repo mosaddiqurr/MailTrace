@@ -1,0 +1,7 @@
+From: Sender <sender@example.com>
+Subject: Link text mismatch
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+Message-ID: <6@example.com>
+
+<a href="https://other.example/login">https://expected.example/login</a>

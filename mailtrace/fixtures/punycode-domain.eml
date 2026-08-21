@@ -1,0 +1,13 @@
+Return-Path: <security@xn--pple-43d.example>
+Received: from mx.xn--pple-43d.example (mx.xn--pple-43d.example [198.51.100.90]) by mx.recipient.test with ESMTP id P1; Sun, 20 Jul 2025 07:00:00 +0000
+Authentication-Results: mx.recipient.test; spf=pass smtp.mailfrom=security@xn--pple-43d.example; dkim=pass header.d=xn--pple-43d.example; dmarc=pass header.from=xn--pple-43d.example
+DKIM-Signature: v=1; d=xn--pple-43d.example; s=mail; a=rsa-sha256; bh=fixture; b=fixture
+From: Account Security <security@xn--pple-43d.example>
+To: analyst@recipient.test
+Subject: Internationalised domain demonstration
+Date: Sun, 20 Jul 2025 06:59:00 +0000
+Message-ID: <punycode-1@xn--pple-43d.example>
+Content-Type: text/plain
+
+Demonstration fixture only.
+

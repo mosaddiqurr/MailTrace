@@ -1,0 +1,17 @@
+From: Sender <sender@example.com>
+Subject: Double extension
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="x"
+Message-ID: <7@example.com>
+
+--x
+Content-Type: text/plain
+
+See attachment.
+--x
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="invoice.pdf.exe"
+Content-Transfer-Encoding: base64
+
+TVqQAAMAAAAEAAAA
+--x--

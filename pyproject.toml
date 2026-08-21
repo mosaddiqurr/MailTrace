@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mailtrace"
+version = "1.0.0"
+description = "Local-first email-header investigation application"
+requires-python = ">=3.12"
+dependencies = [
+  "alembic==1.14.1",
+  "dnspython==2.7.0",
+  "fastapi==0.139.2",
+  "pydantic-settings==2.7.1",
+  "python-multipart==0.0.32",
+  "reportlab==4.3.1",
+  "sqlalchemy==2.0.38",
+  "uvicorn[standard]==0.34.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx==0.28.1",
+  "mypy==1.15.0",
+  "pytest==9.1.1",
+  "pytest-cov==6.0.0",
+  "ruff==0.9.7",
+]
+
+[tool.setuptools.packages.find]
+include = ["mailtrace*"]
+
+[tool.setuptools.package-data]
+mailtrace = ["fixtures/*.eml", "fixtures/*.json"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S"]
+ignore = ["S101", "E501"]
+
+[[tool.mypy.overrides]]
+module = ["reportlab.*"]
+ignore_missing_imports = true
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+exclude = ["alembic"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+
+[tool.coverage.run]
+source = ["mailtrace"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90

@@ -1,0 +1,9 @@
+From: Sender <sender@example.com>
+Subject: MIME extension mismatch
+MIME-Version: 1.0
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="photo.jpg"
+Content-Transfer-Encoding: base64
+Message-ID: <8@example.com>
+
+TVqQAAMAAAAEAAAA

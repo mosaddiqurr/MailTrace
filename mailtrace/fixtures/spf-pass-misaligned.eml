@@ -1,0 +1,7 @@
+Authentication-Results: mx.test; spf=pass smtp.mailfrom=bounce@mailer.example; dmarc=fail header.from=brand.example
+From: Brand <news@brand.example>
+Return-Path: <bounce@mailer.example>
+Subject: SPF pass without alignment
+Message-ID: <1@mailer.example>
+
+Alignment fixture.

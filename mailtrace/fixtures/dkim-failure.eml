@@ -1,0 +1,7 @@
+Authentication-Results: mx.test; dkim=fail header.d=example.com; dmarc=fail header.from=example.com
+DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=mail; h=from:subject; b=invalid
+From: Sender <sender@example.com>
+Subject: DKIM failure
+Message-ID: <2@example.com>
+
+Failure fixture.

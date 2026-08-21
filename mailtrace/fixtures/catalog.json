@@ -1,0 +1,13 @@
+[
+  {"slug":"aligned-business","title":"Demo: aligned business email","description":"A routine business message with recorded SPF, DKIM and DMARC alignment."},
+  {"slug":"spf-fail-reply-to","title":"Demo: SPF failure and alternate Reply-To","description":"Recorded SPF failure with replies directed to a free-mail domain."},
+  {"slug":"dkim-pass-dmarc-fail","title":"Demo: DKIM pass without DMARC alignment","description":"A valid recorded DKIM result whose signing domain does not align with Header From."},
+  {"slug":"forwarded-message","title":"Demo: forwarded message","description":"A forwarded message with multiple authentication contexts and ARC evidence."},
+  {"slug":"mailing-list","title":"Demo: mailing-list message","description":"A list-distributed message with list metadata and authentication rewriting."},
+  {"slug":"malformed-headers","title":"Demo: malformed header set","description":"A deliberately malformed but bounded header set for parser review."},
+  {"slug":"punycode-domain","title":"Demo: punycode sender domain","description":"An internationalised lookalike-style domain requiring visual review."},
+  {"slug":"timestamp-anomaly","title":"Demo: timestamp-order anomaly","description":"Received timestamps contain an order reversal."},
+  {"slug":"internal-relay","title":"Demo: benign internal relay","description":"A message traversing private-address internal infrastructure."},
+  {"slug":"incomplete-auth","title":"Demo: incomplete authentication evidence","description":"A plausible message lacking receiver-recorded authentication results."}
+]
+

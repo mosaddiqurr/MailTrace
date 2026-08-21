@@ -1,0 +1,7 @@
+ARC-Seal: i=2; a=rsa-sha256; d=forwarder.example; s=arc; cv=fail; b=x
+ARC-Authentication-Results: i=1; mx.forwarder.example; spf=pass smtp.mailfrom=example.com
+From: Sender <sender@example.com>
+Subject: Broken ARC sequence
+Message-ID: <4@example.com>
+
+ARC fixture.

@@ -1,0 +1,5 @@
+From: "=HYPERLINK(""bad"")" <sender@example.com>
+Subject: +SUM(A1:A2)
+Message-ID: <11@example.com>
+
+CSV export fixture.

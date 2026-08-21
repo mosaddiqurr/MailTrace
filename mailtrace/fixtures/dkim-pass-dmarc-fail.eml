@@ -1,0 +1,13 @@
+Return-Path: <bounce@service-provider.test>
+Received: from relay.service-provider.test (relay.service-provider.test [198.51.100.70]) by mx.example.net with ESMTPS id K77; Thu, 17 Jul 2025 11:20:00 +0000
+Authentication-Results: mx.example.net; spf=pass smtp.mailfrom=bounce@service-provider.test; dkim=pass header.d=service-provider.test header.s=outbound; dmarc=fail header.from=brand.example policy.dmarc=reject
+DKIM-Signature: v=1; a=rsa-sha256; d=service-provider.test; s=outbound; h=from:to:subject:date; bh=fixture; b=fixture
+From: Brand Operations <ops@brand.example>
+To: recipient@example.net
+Subject: Service notification
+Date: Thu, 17 Jul 2025 11:19:10 +0000
+Message-ID: <service-91@service-provider.test>
+Content-Type: text/plain
+
+Demonstration fixture only.
+

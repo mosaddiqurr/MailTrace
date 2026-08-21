@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "notice": "Production code must not load this file.",
+  "fixtures": {
+    "aligned-business": {"expected_assessment": "No clear concern found", "expected_observations": [], "expected_absent": ["AUTH-SPF-FAIL"], "warnings": [], "limitations": ["reported authentication"]},
+    "spf-fail-reply-to": {"expected_observations": ["AUTH-SPF-FAIL", "ID-001"], "expected_absent": [], "warnings": [], "limitations": ["forwarding context"]},
+    "dkim-pass-dmarc-fail": {"expected_observations": ["AUTH-DMARC-FAIL"], "expected_absent": [], "warnings": [], "limitations": ["reported authentication"]},
+    "forwarded-message": {"expected_observations": ["AUTH-002"], "expected_absent": [], "warnings": [], "limitations": ["ARC not independently validated"]},
+    "mailing-list": {"expected_observations": ["META-003"], "expected_absent": [], "warnings": [], "limitations": ["mailing-list rewriting"]},
+    "malformed-headers": {"expected_observations": ["ID-005"], "expected_absent": [], "warnings": ["malformed-line"], "limitations": ["parser warnings"]},
+    "punycode-domain": {"expected_observations": ["DOM-001"], "expected_absent": [], "warnings": [], "limitations": ["visual review"]},
+    "timestamp-anomaly": {"expected_observations": ["HOP-001"], "expected_absent": [], "warnings": [], "limitations": ["clock skew"]},
+    "internal-relay": {"expected_observations": [], "expected_absent": ["HOP-PRIVATE-MALICIOUS"], "warnings": [], "limitations": ["private IP is not malicious"]},
+    "incomplete-auth": {"expected_observations": ["AUTH-001"], "expected_absent": [], "warnings": [], "limitations": ["authentication unavailable"]},
+    "spf-pass-misaligned": {"expected_observations": ["AUTH-SPF-ALIGN"], "expected_absent": ["AUTH-SPF-FAIL"], "warnings": [], "limitations": ["delegated sender"]},
+    "dkim-failure": {"expected_observations": ["AUTH-DKIM-FAIL"], "expected_absent": [], "warnings": [], "limitations": ["reported result"]},
+    "return-path-mismatch": {"expected_observations": ["ID-002"], "expected_absent": [], "warnings": [], "limitations": ["bounce handling"]},
+    "broken-arc": {"expected_observations": ["AUTH-ARC-FAIL"], "expected_absent": [], "warnings": [], "limitations": ["ARC not independently validated"]},
+    "encoded-headers": {"expected_subject": "Encoded ✓", "expected_observations": [], "expected_absent": [], "warnings": [], "limitations": []},
+    "html-link-mismatch": {"expected_urls": 2, "expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["URLs not fetched"]},
+    "double-extension": {"expected_attachment": "invoice.pdf.exe", "expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["static inspection"]},
+    "mime-extension-mismatch": {"expected_attachment": "photo.jpg", "expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["static inspection"]},
+    "nested-message": {"expected_content_type": "message/rfc822", "expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["nested evidence"]},
+    "malformed-boundary": {"expected_observations": [], "expected_absent": [], "warnings": ["NoBoundaryInMultipartDefect"], "limitations": ["parsing incomplete"]},
+    "csv-injection": {"expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["CSV values neutralised"]},
+    "duplicate-auth": {"expected_observations": ["AUTH-002"], "expected_absent": [], "warnings": [], "limitations": ["trust boundary"]},
+    "untrusted-auth": {"expected_observations": [], "expected_absent": [], "warnings": [], "limitations": ["header position"]},
+    "limited-benign": {"expected_observations": ["AUTH-001"], "expected_absent": ["AUTH-SPF-FAIL"], "warnings": [], "limitations": ["insufficient evidence"]}
+  }
+}

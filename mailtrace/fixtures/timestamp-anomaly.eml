@@ -1,0 +1,13 @@
+Return-Path: <alerts@monitor.example>
+Received: from relay.monitor.example (relay.monitor.example [203.0.113.101]) by mx.recipient.test with ESMTPS id T3; Mon, 21 Jul 2025 10:01:00 +0000
+Received: from app.monitor.example (app.monitor.example [192.0.2.101]) by relay.monitor.example with ESMTP id T2; Mon, 21 Jul 2025 10:05:00 +0000
+Authentication-Results: mx.recipient.test; spf=pass smtp.mailfrom=alerts@monitor.example; dkim=pass header.d=monitor.example; dmarc=pass header.from=monitor.example
+From: Monitor <alerts@monitor.example>
+To: analyst@recipient.test
+Subject: Timestamp anomaly demonstration
+Date: Mon, 21 Jul 2025 10:00:00 +0000
+Message-ID: <alert-1@monitor.example>
+Content-Type: text/plain
+
+Demonstration fixture only.
+

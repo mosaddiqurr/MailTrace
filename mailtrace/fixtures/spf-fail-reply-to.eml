@@ -1,0 +1,14 @@
+Return-Path: <bounce@mailer-unrelated.test>
+Received: from unknown.mailer.test (unknown.mailer.test [198.51.100.40]) by mx.company.test with ESMTP id X12; Wed, 16 Jul 2025 10:10:00 +0000
+Authentication-Results: mx.company.test; spf=fail smtp.mailfrom=bounce@mailer-unrelated.test; dkim=none; dmarc=fail header.from=company.test
+Received-SPF: fail client-ip=198.51.100.40; envelope-from=bounce@mailer-unrelated.test
+From: Company Accounts <accounts@company.test>
+Reply-To: accounts-helpdesk@freemail.example
+To: employee@company.test
+Subject: Account confirmation required
+Date: Wed, 16 Jul 2025 10:09:00 +0000
+Message-ID: <notice-22@mailer-unrelated.test>
+MIME-Version: 1.0
+Content-Type: text/plain
+
+Demonstration fixture only.

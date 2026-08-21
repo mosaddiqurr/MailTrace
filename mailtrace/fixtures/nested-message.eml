@@ -1,0 +1,11 @@
+From: Sender <sender@example.com>
+Subject: Nested message
+MIME-Version: 1.0
+Content-Type: message/rfc822
+Message-ID: <9@example.com>
+
+From: Inner <inner@example.net>
+Subject: Attached message
+Message-ID: <inner@example.net>
+
+Nested body.

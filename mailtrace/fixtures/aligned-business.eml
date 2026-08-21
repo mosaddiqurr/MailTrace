@@ -1,0 +1,16 @@
+Return-Path: <billing@example.com>
+Received: from outbound.example.com (outbound.example.com [203.0.113.20]) by mx.recipient.test with ESMTPS id A100 for <analyst@recipient.test>; Tue, 15 Jul 2025 09:01:10 +0000
+Received: from workstation.example.com (workstation.example.com [192.0.2.44]) by outbound.example.com with ESMTPSA id A099; Tue, 15 Jul 2025 09:00:50 +0000
+Authentication-Results: mx.recipient.test; spf=pass smtp.mailfrom=billing@example.com; dkim=pass header.d=example.com header.s=mail2025; dmarc=pass header.from=example.com policy.dmarc=reject
+Received-SPF: pass client-ip=203.0.113.20; envelope-from=billing@example.com
+DKIM-Signature: v=1; a=rsa-sha256; d=example.com; s=mail2025; c=relaxed/relaxed; h=from:to:subject:date:message-id; bh=fixture; b=fixture
+From: Example Billing <billing@example.com>
+To: Analyst <analyst@recipient.test>
+Subject: Invoice status update
+Date: Tue, 15 Jul 2025 09:00:30 +0000
+Message-ID: <invoice-2841@example.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Demonstration fixture. The body is not analysed or rendered by MailTrace.
+

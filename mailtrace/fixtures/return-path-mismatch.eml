@@ -1,0 +1,6 @@
+From: Accounts <accounts@example.com>
+Return-Path: <bounce@other.example>
+Subject: Return path mismatch
+Message-ID: <3@example.com>
+
+Identity fixture.

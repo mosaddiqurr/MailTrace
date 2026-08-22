@@ -117,7 +117,8 @@ describe("MailTrace application", () => {
   it("lists and deletes local history", async () => {
     const user = userEvent.setup();
     renderAt("/history");
-    expect(await screen.findByText("message.eml · 7/23/2026, 8:00:00 AM")).toBeInTheDocument();
+    const displayedDate = new Date(analysis.created_at).toLocaleString();
+    expect(await screen.findByText(`message.eml · ${displayedDate}`)).toBeInTheDocument();
     await user.click(screen.getByRole("button",{name:"Delete Quarterly report"}));
     await waitFor(() => expect(fetch).toHaveBeenCalledWith("/api/analyses/a1", {method:"DELETE"}));
   });

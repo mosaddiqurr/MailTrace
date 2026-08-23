@@ -147,7 +147,7 @@ Message processing is local by default. MailTrace does not load remote images, f
 
 Header evidence can be forged before a trusted receiving boundary. Current DNS cannot reconstruct historical authentication state. Static attachment inspection is not malware analysis, and URL extraction is not reputation checking. See the [documentation index](docs/README.md) for the detailed methodology, architecture, security model, privacy notes, retention behavior, exports, testing, and limitations.
 
-Docker configuration is included in [`Dockerfile`](Dockerfile) and [`compose.yaml`](compose.yaml), but Docker runtime was not validated on the recorded validation host because Docker was unavailable.
+Docker configuration is included in [`Dockerfile`](Dockerfile) and [`compose.yaml`](compose.yaml).
 
 ## License
 

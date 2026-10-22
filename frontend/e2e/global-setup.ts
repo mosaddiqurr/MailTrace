@@ -1,6 +1,6 @@
 import { type ChildProcess, spawn } from "node:child_process";
 import { existsSync, mkdirSync, rmSync } from "node:fs";
-import { createServer } from "node:net";
+import { createConnection } from "node:net";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,9 +16,22 @@ function delay(milliseconds: number): Promise<void> {
 
 async function assertPortFree(): Promise<void> {
   await new Promise<void>((resolvePort, reject) => {
-    const probe = createServer();
-    probe.once("error", () => reject(new Error(`Port ${PORT} is already in use.`)));
-    probe.listen(PORT, HOST, () => probe.close(() => resolvePort()));
+    // Windows can reject a bind while closed HTTP sockets are in TIME_WAIT.
+    // Check for a live listener instead of treating those closed sockets as a server.
+    const probe = createConnection({host:HOST,port:PORT});
+    probe.once("connect",()=>{
+      probe.destroy();
+      reject(new Error(`Port ${PORT} is already in use.`));
+    });
+    probe.once("error",(error:NodeJS.ErrnoException)=>{
+      probe.destroy();
+      if(error.code==="ECONNREFUSED") resolvePort();
+      else reject(error);
+    });
+    probe.setTimeout(2_000,()=>{
+      probe.destroy();
+      reject(new Error(`Could not check port ${PORT}.`));
+    });
   });
 }
 
@@ -51,7 +64,18 @@ async function waitForExit(server: ChildProcess, milliseconds: number): Promise<
 }
 
 async function stopServer(server: ChildProcess): Promise<void> {
-  if (server.exitCode === null) server.kill();
+  if (server.exitCode === null && process.platform === "win32" && server.pid) {
+    // A Windows venv launcher can outlive/exit before its interpreter child.
+    // Stop only this owned process tree, before losing the launcher's PID.
+    await new Promise<void>((resolveStop,reject)=>{
+      const stop=spawn("taskkill.exe",["/PID",String(server.pid),"/T","/F"],{windowsHide:true,stdio:"ignore"});
+      stop.once("error",reject);
+      stop.once("exit",code=>{
+        if(code===0 || server.exitCode!==null) resolveStop();
+        else reject(new Error("Could not stop the owned MailTrace test server."));
+      });
+    });
+  } else if (server.exitCode === null) server.kill();
   if (!(await waitForExit(server, 10_000)) && server.exitCode === null) {
     server.kill("SIGKILL");
     await waitForExit(server, 5_000);
@@ -76,6 +100,7 @@ export default async function globalSetup(): Promise<() => Promise<void>> {
     cwd: PROJECT_ROOT,
     env: { ...process.env, MAILTRACE_DATA_DIR: dataDir },
     stdio: "inherit",
+    windowsHide: true,
   });
 
   try {

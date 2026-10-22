@@ -65,7 +65,7 @@ describe("MailTrace application", () => {
   it("uses the MailTrace logo in the application header", () => {
     renderAt("/");
     const logo = document.querySelector<HTMLImageElement>(".brand-logo");
-    expect(logo).toHaveAttribute("src", "/logo.png");
+    expect(logo).toHaveAttribute("src", "/logo-72.webp");
     expect(screen.getByRole("link", {name:"MailTrace home"})).toContainElement(logo);
   });
 
@@ -104,6 +104,26 @@ describe("MailTrace application", () => {
     expect(screen.getByText("Drop an .eml file here")).toBeInTheDocument();
   });
 
+  it("keeps the hero free of sample cards and redundant status strips", () => {
+    renderAt("/");
+    expect(document.querySelector(".email-signal-canvas")).toBeInTheDocument();
+    expect(screen.queryByRole("button",{name:/sample|background animation/i})).not.toBeInTheDocument();
+    expect(screen.queryByText("Local analysis")).not.toBeInTheDocument();
+    expect(screen.queryByText("Local by default")).not.toBeInTheDocument();
+  });
+
+  it("explains invalid and oversized dropped evidence", () => {
+    renderAt("/");
+    const zone = screen.getByRole("button", {name:/Drop an .eml file here/});
+    fireEvent.drop(zone, {dataTransfer:{files:[new File(["bad"],"message.exe")]}});
+    expect(screen.getByRole("alert")).toHaveTextContent("Choose an .eml email file");
+    const large = new File(["large"],"oversized.eml");
+    Object.defineProperty(large,"size",{value:11*1024*1024});
+    fireEvent.drop(zone, {dataTransfer:{files:[large]}});
+    expect(screen.getByRole("alert")).toHaveTextContent("10 MiB limit");
+    expect(screen.getByRole("button",{name:"Analyse email"})).toBeDisabled();
+  });
+
   it("renders the evidence-led report", async () => {
     renderAt("/analysis/a1");
     expect(await screen.findByRole("heading",{name:"Quarterly report"})).toBeInTheDocument();
@@ -131,6 +151,22 @@ describe("MailTrace application", () => {
     expect(screen.getByText("No analyses found")).toBeInTheDocument();
     await user.click(screen.getByRole("button",{name:"Toggle navigation"}));
     expect(screen.getByRole("navigation")).toHaveClass("open");
+  });
+
+  it("filters retained reports by risk and clears the search", async () => {
+    const user = userEvent.setup();
+    renderAt("/history");
+    await screen.findByText("Quarterly report");
+    await user.click(screen.getByRole("button",{name:"Low concern"}));
+    expect(screen.getByText("No analyses found")).toBeInTheDocument();
+    await user.click(screen.getByRole("button",{name:"Needs review"}));
+    expect(screen.getByText("Quarterly report")).toBeInTheDocument();
+    await user.type(screen.getByLabelText("Search analyses"),"missing");
+    await user.click(screen.getByRole("button",{name:"Clear search"}));
+    expect(screen.getByText("Quarterly report")).toBeInTheDocument();
+    await user.click(screen.getByRole("button",{name:"Toggle navigation"}));
+    await user.keyboard("{Escape}");
+    expect(screen.getByRole("navigation")).not.toHaveClass("open");
   });
 
   it("shows safe API errors", async () => {

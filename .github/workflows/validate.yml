@@ -16,6 +16,7 @@ jobs:
       - run: python -m pytest --cov=mailtrace --cov-branch
   frontend:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults: { run: { working-directory: frontend } }
     steps:
       - uses: actions/checkout@v4
@@ -26,3 +27,14 @@ jobs:
       - run: npm run test
       - run: npm run build
       - run: npm audit --audit-level=high
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: python -m pip install -e ..
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-failures
+          path: frontend/test-results/
+          retention-days: 7

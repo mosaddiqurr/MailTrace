@@ -6,3 +6,5 @@
 - Keep original evidence until explicit deletion by default; 7/30/90-day preferences are persisted for future scheduled cleanup.
 - Keep DNS off by default and label enabled lookups as current context, never authentication verification.
 - Use deterministic labels and categorical confidence rather than numeric threat scores.
+- Draw the decorative email sculpture in an OffscreenCanvas worker where supported, with the same optimized renderer as a fallback. Keep email evidence out of the visual worker, suspend drawing when invisible, and dispose the worker on navigation.
+- Keep high-resolution design sources in documentation and serve only right-sized, self-hosted assets to the UI.

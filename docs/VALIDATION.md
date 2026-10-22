@@ -1,14 +1,26 @@
-# MailTrace v1.0.0 Validation
+# Validation records
+
+## Interface and performance update — 22 October 2026
+
+The redesigned interface passed the production build, ESLint, 19 Vitest tests (98.68% line coverage), and 23 desktop/mobile Playwright checks. One desktop instance of a mobile-only test is intentionally skipped. The browser run verifies the visual worker, fallback, visibility, cleanup, evidence workflow, exports, navigation, and route accessibility.
+
+The final clean desktop Lighthouse run scored 100 in Performance, Accessibility, Best Practices, and SEO, with 0.6 s LCP, 0 ms Total Blocking Time, and zero layout shift. A separate 4× CPU slowdown input sample improved from 544 ms to 64 ms at the 95th percentile. See [the performance report](PERFORMANCE.md) for configuration and measurement limits.
+
+The repository refresh replaces the old UI screenshots, documents reproducible synthetic-only capture, keeps the original logo outside public build assets, excludes local working notes, and adds the browser suite to CI. The following v1.0.0 record is historical; current CI is authoritative for later commits.
+
+The repository publication checks also passed Ruff, formatting, strict MyPy, and 62 backend tests at 93.63% branch-aware coverage. Vite and Vitest were updated to compatible security-patched versions; the npm dependency audit reports zero vulnerabilities. The existing third-party TestClient deprecation warning remains documented in [known issues](../KNOWN_ISSUES.md).
+
+## v1.0.0 source candidate
 
 Validation date: 20 August 2026
 
 Host: Windows, Python 3.12.10, Node.js 24.15.0
 
-## Release decision
+### Release decision
 
 The v1.0.0 source candidate passed the recorded clean-source acceptance suite. This report captures the validation evidence from that candidate; current CI remains the authoritative check for later commits.
 
-## Remediation verification
+### Remediation verification
 
 - `Received` parsing derives `from_ip` only from the actual `from` clause. Five exact regression cases cover by-only hosts, a Gmail-style IPv6 identifier, hostname/parenthesized IPv4, hostname/IPv4, and hostname/IPv6. All passed.
 - Analysis list/detail serialization uses an explicit `Evidence`/`Case` join. A stale-relationship regression reproduces the previous delete/list failure condition and passed without a 500 response or deleted-record exposure.
@@ -18,7 +30,7 @@ The v1.0.0 source candidate passed the recorded clean-source acceptance suite. T
 - The free-mail fixture uses the reserved synthetic address `accounts-helpdesk@freemail.example`; the scenario and expected `DOM-005` observation remain intact.
 - Source references identify `frontend/public/logo.png` as the live asset. The two byte-identical, unused root `public/` duplicates were removed.
 
-## Clean-source acceptance
+### Clean-source acceptance
 
 A clean source-only copy was created without Git metadata, environments, dependencies, builds, databases, `.env`, private `data/`, output, caches, coverage, browser artifacts, logs, or temporary directories.
 
@@ -46,7 +58,7 @@ From that copy:
 
 The real-stack Playwright run exercised health, static assets, pasted-header analysis, `.eml` upload, analysis retrieval, history persistence/deletion, settings persistence, validation, desktop/mobile layouts, and accessibility checks.
 
-## Repository and privacy review
+### Repository and privacy review
 
 - `data/` remained ignored and untouched. It contains retained local evidence and must never be committed.
 - The known CSA evidence path was ignored by `.gitignore`.
@@ -57,11 +69,11 @@ The real-stack Playwright run exercised health, static assets, pasted-header ana
 - Candidate size was approximately 1 MiB. The only files above 100 KiB were the intentional logo asset and `frontend/package-lock.json`.
 - `git diff --check` and staged whitespace checks reported no errors.
 
-## Docker status
+### Docker status
 
 `Dockerfile` and `compose.yaml` are present. Docker runtime was not validated on this host because the Docker command was unavailable. No Docker execution claim is made.
 
-## Known limitations
+### Known limitations
 
 - Authentication results are receiver-reported evidence, not fresh cryptographic verification.
 - Headers can be forged before a trusted receiving boundary.

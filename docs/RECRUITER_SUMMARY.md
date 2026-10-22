@@ -1,5 +1,5 @@
-# Recruiter Summary
+# Recruiter summary
 
-MailTrace is a local-first email forensic analysis application that parses raw email evidence, reconstructs delivery paths, interprets reported authentication results, inventories MIME content, and generates explainable reports without executing attachments or loading remote resources.
+MailTrace is a local-first email forensics application that reconstructs delivery paths, interprets reported authentication, compares identities, inventories content, and generates explainable reports without executing attachments or loading remote resources.
 
-It demonstrates Python/FastAPI API design, bounded security-sensitive parsing, SQLAlchemy/Alembic persistence, React/TypeScript product engineering, accessible responsive design, export safety, automated testing, and evidence-backed technical communication.
+The project combines Python/FastAPI, SQLAlchemy/SQLite, Alembic, React/TypeScript, responsive design, export safety, and automated backend and browser testing. Its procedural email hero runs in an OffscreenCanvas worker where supported, with lifecycle cleanup and a tested fallback. The [performance report](PERFORMANCE.md) records clean Lighthouse scores and input-response improvements under CPU slowdown. Current UI captures and setup instructions are in the [main README](../README.md).

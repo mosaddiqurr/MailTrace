@@ -17,7 +17,7 @@ test("mobile navigation remains usable", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile");
   await page.goto("/");
   await page.getByRole("button", { name: "Toggle navigation" }).click();
-  await page.getByRole("link", { name: "Methodology" }).click();
+  await page.getByRole("link", { name: "Methodology", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Evidence before conclusions." })).toBeVisible();
 });
 
